@@ -2,13 +2,13 @@ from fastapi import FastAPI, Form
 from fastapi.responses import JSONResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
+import uvicorn
 from pdf_extract import Pdf_loading, text_chunk_split
 from vectorDB import get_model_embedding, get_vectorstore, prompting
 import torch
 import chromadb
-from llama_vision import call_api_llm
+from deepseek_v3 import call_api_llm
 import json
-
 
 
 app = FastAPI()
@@ -38,6 +38,7 @@ async def ask(query: str = Form(...)):
     return JSONResponse(
         {"query": query,
           "answer": answer})
-    
-uvicorn.run("main:app", host="0.0.0.0", port=8000)
+
+if __name__ == "__main__":
+   uvicorn.run("main:app", host="127.0.0.1", port=8001)
 
