@@ -13,8 +13,8 @@ import json
 
 app = FastAPI()
 
-app.mount("/static", StaticFiles(directory="static"), name="static")
-templates = Jinja2Templates(directory="backend/templates")
+#app.mount("/static", StaticFiles(directory="static"), name="static")
+#templates = Jinja2Templates(directory="backend/templates")
 
 Chromadb_Path = 'Chromadb'
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
