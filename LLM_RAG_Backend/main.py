@@ -4,7 +4,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 import uvicorn
 from pdf_extract import Pdf_loading, text_chunk_split
-from vectorDB import get_model_embedding, get_vectorstore, prompting
+from vectorDB import get_model_embedding, prompting
 import torch
 import chromadb
 from deepseek_v3 import call_api_llm
