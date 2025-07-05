@@ -33,6 +33,7 @@ async def ask(query: str = Form(...)):
         results = collection.query(query_texts=[query], n_results=3)
         docs = results["documents"][0]
         prompt = prompting(docs, query)
+        print("✅ Tạo prompt xong", flush=True)
         answer = call_api_llm(prompt)
         print("🚀 Gọi hàm call_api_llm", flush=True)
         print("⚡ Nhận answer:", answer, flush=True)
