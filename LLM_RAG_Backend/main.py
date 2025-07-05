@@ -18,7 +18,6 @@ app = FastAPI()
 
 Chromadb_Path = 'Chromadb'
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-model_embeddings = get_model_embedding()
 collection = chromadb.PersistentClient(path=Chromadb_Path).get_collection(name="my_collection")
 
 @app.post("/post")
