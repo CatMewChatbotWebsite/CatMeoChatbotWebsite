@@ -20,15 +20,21 @@ Chromadb_Path = 'Chromadb'
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 collection = chromadb.PersistentClient(path=Chromadb_Path).get_collection(name="my_collection")
 
+@app.get("/")
+def root():
+    return {"message": "CatMeo chatbot is live!"}
+
 @app.post("/post")
 async def ask(query: str = Form(...)):
     try:
         print("⚡ Nhận query:", query, flush=True)
         query_embedding = embedding_MiniLM_api(query)
+        print("✅ Đã tạo embedding xong", flush=True)
         results = collection.query(query_texts=[query], n_results=3)
         docs = results["documents"][0]
         prompt = prompting(docs, query)
         answer = call_api_llm(prompt)
+        print("🚀 Gọi hàm call_api_llm", flush=True)
         print("⚡ Nhận answer:", answer, flush=True)
     except Exception as e:
         print("❌ Lỗi trong xử lý POST:", e, flush=True)
