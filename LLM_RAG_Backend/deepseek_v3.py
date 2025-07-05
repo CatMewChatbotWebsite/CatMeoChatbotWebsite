@@ -7,7 +7,7 @@ api_key = load_openrouter_apikey()
 client = OpenAI(
   base_url="https://openrouter.ai/api/v1",
   api_key=api_key,
-  timeout=10
+  timeout=15
 )
 
 def call_api_llm(prompt, entries=3):
