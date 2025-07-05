@@ -89,11 +89,11 @@ def inference():
         docs = results['documents'][0] # list các string context top-k
         prompt = prompting(docs, user_input)
         if user_input != "break":
-            call_api_llm(prompt)
+            print(call_api_llm(prompt))
         else:
             break
 
-inference()
+#inference()
     
 
     
