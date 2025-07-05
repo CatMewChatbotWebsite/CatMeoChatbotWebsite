@@ -4,7 +4,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 import uvicorn
 from pdf_extract import Pdf_loading, text_chunk_split
-from vectorDB import get_model_embedding, prompting
+from vectorDB import prompting, embedding_MiniLM_api
 import torch
 import chromadb
 from deepseek_v3 import call_api_llm
@@ -25,7 +25,7 @@ collection = chromadb.PersistentClient(path=Chromadb_Path).get_collection(name="
 async def ask(query: str = Form(...)):
     try:
         print("⚡ Nhận query:", query, flush=True)
-        query_embedding = model_embeddings.encode(query, convert_to_tensor=False)
+        query_embedding = embedding_MiniLM_api(query)
         results = collection.query(query_texts=[query], n_results=3)
         docs = results["documents"][0]
         prompt = prompting(docs, query)
