@@ -4,21 +4,23 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 import uvicorn
 from pdf_extract import Pdf_loading, text_chunk_split
-from vectorDB import prompting, embedding_MiniLM_api
+from vectorDB import prompting, embedding_MiniLM_api, get_vectorstore_pinecone, indexing
 import torch
-import chromadb
+#import chromadb
 from deepseek_v3 import call_api_llm
 import json
 
 
 app = FastAPI()
-
+index_name = "chatbot"
+namespace = "default"
 #app.mount("/static", StaticFiles(directory="static"), name="static")
 #templates = Jinja2Templates(directory="backend/templates")
 
-Chromadb_Path = 'Chromadb'
+#Chromadb_Path = 'Chromadb'
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-collection = chromadb.PersistentClient(path=Chromadb_Path).get_collection(name="my_collection")
+#collection = chromadb.PersistentClient(path=Chromadb_Path).get_collection(name="my_collection")
+index = indexing()
 
 @app.get("/")
 def root():
@@ -30,8 +32,14 @@ async def ask(query: str = Form(...)):
         print("⚡ Nhận query:", query, flush=True)
         query_embedding = embedding_MiniLM_api(query)
         print("✅ Đã tạo embedding xong", flush=True)
-        results = collection.query(query_texts=[query], n_results=3)
-        docs = results["documents"][0]
+        #results = collection.query(query_texts=[query], n_results=3)
+        result = index.query(
+                            vector=[query_embedding],
+                            top_k=3,
+                            namespace=namespace,
+                            include_metadata=True 
+        )
+        docs = result['matches'][0]['metadata']['text'][0]
         prompt = prompting(docs, query)
         print("✅ Tạo prompt xong", flush=True)
         answer = call_api_llm(prompt)
