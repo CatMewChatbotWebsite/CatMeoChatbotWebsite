@@ -110,12 +110,16 @@ def prompting(docs, user_input):
     return prompt
 
 
-def indexing():
+def documents(Path):
     load_pdf = Pdf_loading(Path)
     docs_split = text_chunk_split()
     docs_spliting = docs_split.split_documents(Pdf_loading(Path))
     #model_embeddings = get_model_embedding()
-    vectors, ids, chunk_text = get_vectorstore(docs_spliting)
+    return docs_spliting
+
+def indexing():
+    docs = documents(Path)
+    vectors, ids, chunk_text = get_vectorstore(docs)
     index = get_vectorstore_pinecone(index_name, ids, vectors, chunk_text)
     return index
     # while True:
