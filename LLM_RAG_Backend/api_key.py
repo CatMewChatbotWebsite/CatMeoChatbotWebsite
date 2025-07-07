@@ -14,4 +14,10 @@ def load_openrouter_apikey():
 def load_huggingface_token():
     load_dotenv(".env")  
     token = os.getenv("HF_TOKEN")
+    return token
+
+def load_pinecone_apikey():
+    load_dotenv(".env")  
+    api_key = os.getenv("Pinecone")
+    return api_key
 
