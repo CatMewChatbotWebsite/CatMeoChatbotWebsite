@@ -15,6 +15,7 @@ Path = 'dataPDF.pdf'
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 os.environ["TRANSFORMERS_CACHE"] = "/tmp/empty_hf_cache"  # chống dùng cache cũ
 print(os.environ['TRANSFORMERS_CACHE'])
+
 chunk_text = []
 vectors = []
 index = []
@@ -54,19 +55,12 @@ def embedding_MiniLM_api(text):
 
 
 def get_vectorstore(docs):
-    #chroma_client = chromadb.PersistentClient(path=Chromadb_Path)
     # convert docs_split to vectors:
     for idx, doc in enumerate(docs):
         chunk_text.append(doc.page_content)
         index.append(str(idx))
         vectors.append(embedding_MiniLM_api(doc.page_content))
     
-    #collection = chroma_client.get_or_create_collection(name="my_collection")
-    # collection.add(
-    #     documents = chunk_text,
-    #     embeddings = vectors,
-    #     ids = index
-    # )
     return vectors, index, chunk_text
 
 def get_index_pinecone(index_name):
@@ -114,7 +108,6 @@ def documents(Path):
     load_pdf = Pdf_loading(Path)
     docs_split = text_chunk_split()
     docs_spliting = docs_split.split_documents(Pdf_loading(Path))
-    #model_embeddings = get_model_embedding()
     return docs_spliting
 
 def indexing():
@@ -122,27 +115,7 @@ def indexing():
     vectors, ids, chunk_text = get_vectorstore(docs)
     index = get_vectorstore_pinecone(index_name, ids, vectors, chunk_text)
     return index
-    # while True:
-    #     user_input = input("nhập câu hỏi: ")
-    #     query_embedding = embedding_MiniLM_api(user_input)
-    #     result = index.query(
-    #                           vector=[query_embedding],
-    #                           top_k=3,
-    #                           namespace=namespace,
-    #                           include_metadata=True 
-    #     )
-    #     docs = result['matches'][0]['metadata']['text'][0]
-    # #     results = collection.query(
-    # #         query_texts=[str(query_embedding)], # Chroma will embed this for you or embedded then push it to query_text
-    # #         n_results=3 # how many results to return
-    # # )
-    # #     docs = results['documents'][0] # list các string context top-k
-    # #     print(results)
-    #     prompt = prompting(docs, user_input)
-    #     if user_input != "break":
-    #         print(call_api_llm(prompt))
-    #     else:
-    #         break
+    
    
 
     
