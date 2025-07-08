@@ -4,23 +4,25 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 import uvicorn
 from pdf_extract import Pdf_loading, text_chunk_split
-from vectorDB import prompting, embedding_MiniLM_api, get_vectorstore_pinecone, indexing
+from init import initial
+from vectorDB import RAG
 import torch
-#import chromadb
 from deepseek_v3 import call_api_llm
 import json
 
 
 app = FastAPI()
-index_name = "chatbot"
-namespace = "default"
-#app.mount("/static", StaticFiles(directory="static"), name="static")
-#templates = Jinja2Templates(directory="backend/templates")
+Path, device, HF_token, pincone_api, index_name, namespace = initial()
 
-#Chromadb_Path = 'Chromadb'
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-#collection = chromadb.PersistentClient(path=Chromadb_Path).get_collection(name="my_collection")
-index = indexing()
+Rag_class = RAG(
+            Path=Path,
+            index_name=index_name,
+            namespace=namespace,
+            HF_token=HF_token,
+            api_key_pinecone=pincone_api,
+            device=device    
+            )
+
 
 @app.get("/")
 def root():
@@ -30,17 +32,17 @@ def root():
 async def ask(query: str = Form(...)):
     try:
         print("⚡ Nhận query:", query, flush=True)
-        query_embedding = embedding_MiniLM_api(query)
+        query_embedding = Rag_class.embedding_MiniLM_api(query)
         print("✅ Đã tạo embedding xong", flush=True)
         #results = collection.query(query_texts=[query], n_results=3)
-        result = index.query(
+        result = Rag_class.indexing().query(
                             vector=[query_embedding],
                             top_k=3,
                             namespace=namespace,
                             include_metadata=True 
         )
         docs = result['matches'][0]['metadata']['text'][0]
-        prompt = prompting(docs, query)
+        prompt = Rag_class.prompting(docs, query)
         print("✅ Tạo prompt xong", flush=True)
         answer = call_api_llm(prompt)
         print("🚀 Gọi hàm call_api_llm", flush=True)
