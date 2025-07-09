@@ -9,6 +9,8 @@ from vectorDB import RAG
 import torch
 from deepseek_v3 import call_api_llm
 import json
+import asyncio
+from functools import partial
 
 
 app = FastAPI()
@@ -32,19 +34,23 @@ def root():
 async def ask(query: str = Form(...)):
     try:
         print("⚡ Nhận query:", query, flush=True)
-        query_embedding = Rag_class.embedding_MiniLM_api(query)
+        loop = asyncio.get_event_loop()
+
+        query_embedding = await loop.run_in_executor(None, Rag_class.embedding_MiniLM_api, query)
         print("✅ Đã tạo embedding xong", flush=True)
-        #results = collection.query(query_texts=[query], n_results=3)
-        result = Rag_class.indexing().query(
-                            vector=[query_embedding],
-                            top_k=3,
-                            namespace=namespace,
-                            include_metadata=True 
-        )
+        index = Rag_class.indexing()
+        query_fn = partial(
+                        index.query,
+                        vector=query_embedding,
+                        top_k=3,
+                        namespace=namespace,
+                        include_metadata=True
+                    )
+        result = await loop.run_in_executor(None, query_fn)
         docs = result['matches'][0]['metadata']['text'][0]
         prompt = Rag_class.prompting(docs, query)
         print("✅ Tạo prompt xong", flush=True)
-        answer = call_api_llm(prompt)
+        answer = await loop.run_in_executor(None, call_api_llm, prompt)
         print("🚀 Gọi hàm call_api_llm", flush=True)
         print("⚡ Nhận answer:", answer, flush=True)
     except Exception as e:
