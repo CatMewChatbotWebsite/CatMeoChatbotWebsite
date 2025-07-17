@@ -16,6 +16,6 @@ An AI-powered e-commerce platform for purchasing cat litter, featuring a friendl
 - User can chat with automate bot when I am unvailable.
 - The chatbot can explain product details, answer frequently asked questions.
 # 2.3 Architecture
-!["Architecture of WebsiteChatbot"]("https://drive.google.com/file/d/1Pp9MnYvpxIfo-d87HP2b66nUw0jYQzP1/view?usp=sharing.png")
+!["Architecture of WebsiteChatbot"]("architecture/catmeochatbot.png")
 
 
