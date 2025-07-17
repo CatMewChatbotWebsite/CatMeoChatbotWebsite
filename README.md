@@ -10,7 +10,7 @@ An AI-powered e-commerce platform for purchasing cat litter, featuring a friendl
 # Illustration
 # Author
 
-# Introduction
+# 3.Introduction
 - I have built Cat Litter Website integrated with a chatbot to keep in contact with customer when I am unavailable. The chatbot provides support, answers frequently asked questions, and helps users choose the right product for their cats. This solution aims to improve customer experience and automate basic support task.
 
 
