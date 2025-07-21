@@ -6,8 +6,6 @@ from huggingface_hub import InferenceClient
 from pinecone import Pinecone
 
 
-
-
 class RAG:
     def __init__(self, Path, index_name, namespace, HF_token, api_key_pinecone, device):
         self.Path_PDF = Path

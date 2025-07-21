@@ -14,6 +14,7 @@ from functools import partial
 from fastapi.middleware.cors import CORSMiddleware
 
 
+
 app = FastAPI()
 # Cho phép mọi origin (hoặc chỉ localhost:3000)
 app.add_middleware(
@@ -24,6 +25,8 @@ app.add_middleware(
     allow_credentials=True,
 )
 Path, device, HF_token, pincone_api, index_name, namespace = initial()
+
+
 
 Rag_class = RAG(
             Path=Path,
