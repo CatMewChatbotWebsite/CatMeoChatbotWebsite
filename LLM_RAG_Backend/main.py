@@ -11,9 +11,18 @@ from deepseek_v3 import call_api_llm
 import json
 import asyncio
 from functools import partial
+from fastapi.middleware.cors import CORSMiddleware
 
 
 app = FastAPI()
+# Cho phép mọi origin (hoặc chỉ localhost:3000)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],            # production bạn nên cụ thể: ["https://your-frontend.com"]
+    allow_methods=["*"],
+    allow_headers=["*"],
+    allow_credentials=True,
+)
 Path, device, HF_token, pincone_api, index_name, namespace = initial()
 
 Rag_class = RAG(
@@ -55,7 +64,7 @@ async def ask(query: str = Form(...)):
         print("⚡ Nhận answer:", answer, flush=True)
     except Exception as e:
         print("❌ Lỗi trong xử lý POST:", e, flush=True)
-        answer = f"Lỗi: {e}"
+        answer = f"Lỗi: {e}"    
 
     return JSONResponse(
         {"query": query,
