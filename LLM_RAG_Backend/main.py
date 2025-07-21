@@ -11,10 +11,21 @@ from deepseek_v3 import call_api_llm
 import json
 import asyncio
 from functools import partial
+from fastapi.middleware.cors import CORSMiddleware
 
 
 app = FastAPI()
 Path, device, HF_token, pincone_api, index_name, namespace = initial()
+
+
+# Cho phép mọi origin (hoặc chỉ localhost:3000)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],            
+    allow_methods=["*"],
+    allow_headers=["*"],
+    allow_credentials=True,
+)
 
 Rag_class = RAG(
             Path=Path,
