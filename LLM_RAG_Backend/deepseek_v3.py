@@ -13,16 +13,16 @@ client = OpenAI(
 def call_api_llm(prompt, entries=3):
   for i in range(entries):
     try:
-        completion = client.chat.completions.create(
-        model="deepseek/deepseek-chat-v3-0324:free",
-        messages=[
-            {
-            "role": "user",
-            "content": prompt
-            }
-        ]
-        )
-        return completion.choices[0].message.content
+      completion = client.chat.completions.create(
+      model="deepseek/deepseek-chat-v3-0324:free",
+      messages=[
+          {
+          "role": "user",
+          "content": prompt
+          }
+      ]
+      )
+      return completion.choices[0].message.content
     except:
-        call_api_llamavision(prompt)
-  return "⚠️ Server đang quá tải, vui lòng thử lại sau."
+      print("⚠️ Server đang quá tải, vui lòng thử lại sau.", flush=True)
+  return call_api_llamavision(prompt)
