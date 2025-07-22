@@ -18,9 +18,17 @@ An AI-powered e-commerce platform for purchasing cat litter, featuring a friendl
 ## 2.3 Architecture
 ![Chatbot Architecture](architecture/catmeochatbot.png)
 ## 2.4 Setup
-- Create and activate virtual environment:
-~ python -m venv venv
-~ source venv/bin/activate  # On Windows: venv\Scripts\activate
+### 1. Create and activate virtual environment
+```bash
+# Create virtual environment
+python -m venv venv
+
+# Activate virtual environment
+# On Unix/macOS:
+source venv/bin/activate
+
+# On Windows:
+venv\Scripts\activate
 - Installing requirement:
 ** pip install -r requirement.txt
 - Setup variablle environment:
