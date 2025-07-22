@@ -30,7 +30,7 @@ source venv/bin/activate
 # On Windows:
 venv\Scripts\activate
 
-'''bash
+```bash
 ### Installing requirement:
 - pip install -r requirement.txt
 ### Setup variablle environment:
