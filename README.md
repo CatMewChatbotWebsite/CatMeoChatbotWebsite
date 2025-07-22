@@ -30,15 +30,14 @@ source venv/bin/activate
 # On Windows:
 venv\Scripts\activate
 
-```bash
-### Installing requirement:
+### 2. Installing requirement:
 - pip install -r requirement.txt
-### Setup variablle environment:
+### 3. Setup variablle environment:
 - TOGETHER_API_KEY(LLM API)
 - OPENROUTER_API_KEY(LLM API)
 - HF_TOKEN(Embedding API)
 - Pinecone(VectorDB API)
-### Run the backend: uvicorn main:app
+### 4. Run the backend: uvicorn main:app
 
 
 
