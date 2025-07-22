@@ -19,6 +19,7 @@ def call_api_llamavision(prompt):
   #print(f"🤖 Trợ lý -> {response.choices[0].message.content}")
     return response.choices[0].message.content
   except Exception as e:
-    print("❌ Lỗi call_api_llm:", e, flush=True)
+    print(f"Lỗi call llm api: {e}", flush=True)
+  return "⚠️ Server đang quá tải, vui lòng thử lại sau"
 
 
