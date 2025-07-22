@@ -18,8 +18,6 @@ An AI-powered e-commerce platform for purchasing cat litter, featuring a friendl
 ## 2.3 Architecture
 ![Chatbot Architecture](architecture/catmeochatbot.png)
 ## 2.4 Setup
-### 1. Create and activate virtual environment
-```bash
 # Create virtual environment
 python -m venv venv
 
@@ -30,14 +28,14 @@ source venv/bin/activate
 # On Windows:
 venv\Scripts\activate
 
-### 2. Installing requirement:
+### Installing requirement:
 - pip install -r requirement.txt
-### 3. Setup variablle environment:
+### Setup variablle environment:
 - TOGETHER_API_KEY(LLM API)
 - OPENROUTER_API_KEY(LLM API)
 - HF_TOKEN(Embedding API)
 - Pinecone(VectorDB API)
-### 4. Run the backend: uvicorn main:app
+### Run the backend: uvicorn main:app
 
 
 
