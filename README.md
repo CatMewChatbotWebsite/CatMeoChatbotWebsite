@@ -30,7 +30,7 @@ source venv/bin/activate
 venv\Scripts\activate
 
 ### Installing requirement:
-- pip install -r requirement.txt
+pip install -r requirement.txt
 ### Setup variablle environment:
 - TOGETHER_API_KEY(LLM API)
 - OPENROUTER_API_KEY(LLM API)
