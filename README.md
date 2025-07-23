@@ -44,20 +44,10 @@ uvicorn main:app
 - After run uvicorn main:app, it comes with http://127.0.0.1:8000 -> IP local. Then you add /docs after :8000 to test backend local -> http://127.0.0.1:8000/docs
 
 ## Illustration
-- Flow:
-[User Input] 
-     ↓
-[FastAPI Server]
-     ↓
-[Embedding Model (e.g., HuggingFace API)]
-     ↓
-[Vector DB (e.g., Pinecone)]
-     ↓
-[Retrieve Similar Chunks]
-     ↓
-[LLM (e.g., Together AI API)]
-     ↓
-[Final Answer]
+- Flow application:
+  ![Flow application](architecture/flowchatbot.png)
+  
+
 
 
 
