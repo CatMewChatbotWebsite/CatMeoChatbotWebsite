@@ -47,7 +47,7 @@ uvicorn main:app
 ![Flow application](architecture/flowchatbot.png)
 
 ## Limitation
-###API Rate Limits:
+### API Rate Limits:
 - The project uses free-tier APIs (e.g., HuggingFace Inference API, TogetherAI), which are subject to rate limits. This may result in temporary unavailability or errors if the usage exceeds the quota.
 ### Free Deployment Platform:
 - The server is hosted on Render’s free tier, which automatically suspends after 15 minutes of inactivity. This causes a cold start delay (10–30s) for the first request after idle time.
