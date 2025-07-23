@@ -8,7 +8,8 @@ An AI-powered e-commerce platform for purchasing cat litter, featuring a friendl
 ## 2.4 Setup
 ## 2.5 Usage
 ## 2.6 Illustration
-## 2.7 Author
+## 2.7 Limitation
+## 2.8 Author
 
 ## 2.1. Introduction
 - I have built Cat Litter Website integrated with a chatbot to keep in contact with customer when I am unavailable. The chatbot provides support, answers frequently asked questions, and helps users choose the right product for their cats. This solution aims to improve customer experience and automate basic support task.
@@ -40,6 +41,26 @@ pip install -r requirement.txt
 uvicorn main:app
 
 ## Usage
+- After run uvicorn main:app, it comes with http://127.0.0.1:8000 -> IP local. Then you add /docs after :8000 to test backend local -> http://127.0.0.1:8000/docs
+
+## Illustration
+- Flow:
+[User Input] 
+     ↓
+[FastAPI Server]
+     ↓
+[Embedding Model (e.g., HuggingFace API)]
+     ↓
+[Vector DB (e.g., Pinecone)]
+     ↓
+[Retrieve Similar Chunks]
+     ↓
+[LLM (e.g., Together AI API)]
+     ↓
+[Final Answer]
+
+
+
 
 
 
