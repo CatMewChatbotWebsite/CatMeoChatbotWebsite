@@ -25,4 +25,22 @@ def call_api_llm(prompt, entries=3):
       return completion.choices[0].message.content
     except:
       print("⚠️ Server đang quá tải, vui lòng thử lại sau.", flush=True)
+  return call_api_llm_qwen3(prompt)
+
+def call_api_llm_qwen3(prompt):
+  try:
+    completion = client.chat.completions.create(
+    model="qwen/qwen3-235b-a22b-07-25:free",
+    messages=[
+        {
+        "role": "user",
+        "content": prompt
+        }
+    ]
+    )
+    return completion.choices[0].message.content
+  except:
+    print("⚠️ Server đang quá tải, vui lòng thử lại sau.", flush=True)
   return call_api_llamavision(prompt)
+
+   
