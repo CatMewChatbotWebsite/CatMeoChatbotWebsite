@@ -1,5 +1,6 @@
 # 1. Topic: Smart Cat Litter Shop with AI Chatbot Support
-An AI-powered e-commerce platform for purchasing cat litter, featuring a friendly chatbot that assists users in real time.
+- An AI-powered e-commerce platform for purchasing cat litter, featuring a friendly chatbot that assists users in real time.
+- CatMeoSaiGon application: https://catmeosaigon.netlify.app/
 
 # 2. Indexing
 ## 2.1 Introduction
