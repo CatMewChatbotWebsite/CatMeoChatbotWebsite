@@ -7,7 +7,8 @@ from pdf_extract import Pdf_loading, text_chunk_split
 from init import initial
 from vectorDB import RAG
 import torch
-from deepseek_v3 import call_api_llm
+from deepseek_v3 import call_api_llm, call_api_llm_qwen3
+from llama_vision import call_api_llamavision
 import json
 import asyncio
 from functools import partial
