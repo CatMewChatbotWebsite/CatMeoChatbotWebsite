@@ -36,8 +36,10 @@ pip install -r requirement.txt
 - OPENROUTER_API_KEY
 - HF_TOKEN
 - Pinecone API
-### Run the backend: uvicorn main:app
+### Run the backend: 
+uvicorn main:app
 
+## Usage
 
 
 
