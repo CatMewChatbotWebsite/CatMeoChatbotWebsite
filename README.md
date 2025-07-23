@@ -32,10 +32,10 @@ venv\Scripts\activate
 ### Installing requirement:
 pip install -r requirement.txt
 ### Setup variablle environment:
-- TOGETHER_API_KEY(LLM API)
-- OPENROUTER_API_KEY(LLM API)
-- HF_TOKEN(Embedding API)
-- Pinecone(VectorDB API)
+- TOGETHER_API_KEY
+- OPENROUTER_API_KEY
+- HF_TOKEN
+- Pinecone API
 ### Run the backend: uvicorn main:app
 
 
