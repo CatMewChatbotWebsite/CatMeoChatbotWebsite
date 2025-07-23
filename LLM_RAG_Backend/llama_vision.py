@@ -3,12 +3,12 @@ from api_key import load_together_apikey
 
 api_key = load_together_apikey()
 
-client = Together(api_key=api_key, timeout=10)
+client = Together(api_key=api_key, timeout=15)
 
 def call_api_llamavision(prompt):
   try:
     response = client.chat.completions.create(
-        model="meta-llama/Llama-Vision-Free",             #https://api.together.ai/models
+        model="meta-llama/Llama-3.3-70B-Instruct-Turbo-Free",             #https://api.together.ai/models
         messages=[
           {
             "role": "user",
