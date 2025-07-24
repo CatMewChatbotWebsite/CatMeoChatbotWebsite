@@ -8,7 +8,7 @@ from init import initial
 from vectorDB import RAG
 import torch
 from deepseek_v3 import call_api_llm, call_api_llm_qwen3
-from llama_vision import call_api_llamavision
+from llama_vision import call_api_llamavision, call_api_llm_qwen3_coder
 import json
 import asyncio
 from functools import partial
