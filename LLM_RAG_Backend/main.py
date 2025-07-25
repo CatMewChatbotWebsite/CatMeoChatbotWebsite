@@ -55,12 +55,12 @@ async def ask(query: str = Form(...)):
         query_fn = partial(
                         index.query,
                         vector=query_embedding,
-                        top_k=3,
+                        top_k=5,
                         namespace=namespace,
                         include_metadata=True
                     )
         result = await loop.run_in_executor(None, query_fn)
-        docs = result['matches'][0]['metadata']['text'][0]
+        docs = result['matches'][0]['metadata']['text']
         prompt = Rag_class.prompting(docs, query)
         print("✅ Tạo prompt xong", flush=True)
         answer = await loop.run_in_executor(None, call_api_llm, prompt)
