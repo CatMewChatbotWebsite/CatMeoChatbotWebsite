@@ -8,7 +8,7 @@ from init import initial
 from vectorDB import RAG
 import torch
 from deepseek_v3 import call_api_llm, call_api_llm_qwen3
-from llama_vision import call_api_llamavision, call_api_llm_qwen3_coder
+from llama_vision import call_api_llamavision
 import json
 import asyncio
 from functools import partial
@@ -55,7 +55,7 @@ async def ask(query: str = Form(...)):
         query_fn = partial(
                         index.query,
                         vector=query_embedding,
-                        top_k=5,
+                        top_k=3,
                         namespace=namespace,
                         include_metadata=True
                     )
