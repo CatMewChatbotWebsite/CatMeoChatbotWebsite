@@ -79,10 +79,13 @@ class RAG:
                 "values": embedding[0],
                 "metadata": {"text": chunk_text}
             }]
-        index.upsert(
-            namespace=self.namespace,
-            vectors=data
-        )
+        try:
+            index.upsert(
+                namespace=self.namespace,
+                vectors=data
+            )
+        except Exception as e:
+            return f"Upsert failed: {e}"
         return index
 
 
