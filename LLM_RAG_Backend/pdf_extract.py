@@ -14,9 +14,10 @@ def text_chunk_split():
     text_splitter = RecursiveCharacterTextSplitter(
     # Set a really small chunk size, just to show.
     chunk_size=400,
-    chunk_overlap=30,
+    chunk_overlap=70,
     length_function=len,
     is_separator_regex=False,
+    separators = ["\n•", "\n-", "\n|", "\n"]
 )
     return text_splitter
 
