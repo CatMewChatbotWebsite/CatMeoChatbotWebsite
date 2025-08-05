@@ -61,6 +61,7 @@ async def ask(query: str = Form(...)):
                     )
         result = await loop.run_in_executor(None, query_fn)
         docs = result['matches'][0]['metadata']['text']
+        print(docs)
         prompt = Rag_class.prompting(docs, query)
         print("✅ Tạo prompt xong", flush=True)
         answer = await loop.run_in_executor(None, call_api_llm, prompt)
