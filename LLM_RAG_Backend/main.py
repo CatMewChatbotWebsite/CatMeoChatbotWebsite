@@ -20,7 +20,7 @@ app = FastAPI()
 # Cho phép mọi origin (hoặc chỉ localhost:3000)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],            # production bạn nên cụ thể: ["https://your-frontend.com"]
+    allow_origins=["https://catmeosaigon.netlify.app"],            # production bạn nên cụ thể: ["https://your-frontend.com"]
     allow_methods=["*"],
     allow_headers=["*"],
     allow_credentials=True,
