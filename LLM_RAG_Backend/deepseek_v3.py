@@ -14,7 +14,7 @@ def call_api_llm(prompt, entries=3):
   for i in range(entries):
     try:
       completion = client.chat.completions.create(
-      model="deepseek/deepseek-chat-v3-0324:free",
+      model="deepseek/deepseek-chat-v3-0324:free", # 685B-parameter
       messages=[
           {
           "role": "user",
@@ -30,9 +30,9 @@ def call_api_llm(prompt, entries=3):
 def call_api_llm_qwen3(prompt):
   try:
     completion = client.chat.completions.create(
-    model="qwen/qwen3-235b-a22b-07-25:free",
+    model="qwen/qwen3-coder:free",
     messages=[
-        {
+        { 
         "role": "user",
         "content": prompt
         }
