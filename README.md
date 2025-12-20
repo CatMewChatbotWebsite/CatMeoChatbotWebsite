@@ -9,14 +9,14 @@
 ## 2.4 Setup
 ## 2.5 Usage
 ## 2.6 Illustration
-## 2.8 Limitation
+## 2.7 Limitation
 
 ## 2.1. Introduction
 - I have built Cat Litter Website integrated with a chatbot to keep in contact with customer when I am unavailable. The chatbot provides support, answers frequently asked questions, and helps users choose the right product for their cats. This solution aims to improve customer experience and automate basic support task.
 ## 2.2. Features
 - User can chat with automate bot when I am unvailable.
 - The chatbot can explain product details, answer frequently asked questions.
-## 2.3 Architecture
+## 2.3. Architecture
 ![Chatbot Architecture](architecture/catmeochatbot.png)
 ## 2.4 Setup
 
@@ -40,13 +40,13 @@ pip install -r requirement.txt
 ### Run the backend: 
 uvicorn main:app
 
-## Usage
+## 2.5. Usage
 - After run uvicorn main:app, it comes with http://127.0.0.1:8000 -> IP local. Then you add /docs after :8000 to test backend local -> http://127.0.0.1:8000/docs
 
-## Illustration
+## 2.6. Illustration
 ![Flow application](architecture/flowchatbot.png)
 
-## Limitation
+## 2.7. Limitation
 ### API Rate Limits:
 - The project uses free-tier APIs (e.g., HuggingFace Inference API, TogetherAI), which are subject to rate limits. This may result in temporary unavailability or errors if the usage exceeds the quota.
 ### Free Deployment Platform:
